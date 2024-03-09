@@ -1,16 +1,10 @@
 #version 330 core
 
-layout (location = 0) in vec3 vertex;
-layout (location = 1) in vec3 normal;
-layout (location = 2) in vec3 color;
-layout (location = 3) in vec2 texCoord;
+in vec4 frontColor;
+in vec3 NEye;
+in vec3 vertEye;
 
-out vec4 frontColor;
-out vec2 vtexCoord;
-
-uniform mat4 modelViewMatrix;
-uniform mat4 projectionMatrix;
-uniform mat3 normalMatrix;
+out vec4 fragColor;
 
 uniform vec4 lightAmbient;
 uniform vec4 lightDiffuse;
@@ -55,12 +49,9 @@ vec4 Specular (vec3 NEye, vec3 L, vec3 eyePos, vec3 light)
 
 void main()
 {
-    vec3 N = normalize(normalMatrix * normal);
-    vec4 position = modelViewMatrix*vec4(vertex,1.0);
-    vec3 L = normalize(lightPosition.xyz - position.xyz);
-    frontColor = vec4(color,1.0) * N.z;
-    vtexCoord = texCoord;
+    vec3 N = normalize(NEye);
+    vec3 L = normalize(lightPosition.xyz-vertEye);
+    const vec4 light = vec4(1.0,1.0,1.0,1.0);
 
-    frontColor = Ambient() + Diffuse(N,L,vec4(1.0,1.0,1.0,1.0)) + Specular(N,L,position.xyz,vec3(1.0,1.0,1.0)); 
-    gl_Position = projectionMatrix * position;
+    fragColor = Ambient() + Diffuse(N,L,light) + Specular(N,L,vertEye,light.xyz);
 }
