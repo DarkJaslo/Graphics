@@ -12,6 +12,9 @@ uniform mat3 normalMatrix;
 
 void main( void )
 {
+
+	//Repeated computations are left for clarity. In a real use case, it would be best to optimize this
+
 	vec4 baricenter = vec4(0,0,0,0);
 	for( int i = 0 ; i < 3 ; i++ )
 	{
