@@ -3,6 +3,16 @@
 
 #include "plugin.h" 
 
+/*
+	Plugin that displays info about the scene after each frame:
+
+	- Number of objects
+	- Number of faces
+	- Number of vertices
+
+	This is only printed when changes occur.
+*/
+
 class ModelInfo: public QObject, public Plugin
 {
 	Q_OBJECT
