@@ -33,7 +33,7 @@ void AnimateVerticesPlugin::preFrame()
 
 void AnimateVerticesPlugin::postFrame()
 {
-	
+	program->release();
 }
 
 void AnimateVerticesPlugin::onObjectAdd()
