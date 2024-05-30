@@ -37,7 +37,6 @@ class DrawSmooth: public QObject, public Plugin
 					Vector N,
 					std::pair<float,float> TC,
 					std::vector<unsigned int>& indices,
-					std::vector<int>& references,
 					std::vector<float>& normals,
 					std::vector<float>& colors,
 					std::vector<float>& texCoords,

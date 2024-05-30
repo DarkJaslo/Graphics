@@ -122,14 +122,14 @@ void DrawSmooth::addVBO(unsigned int currentObject)
 			Point P = verts[f.vertexIndex(i)].coord();
 			Vector N = norms[f.normalIndex(i)];
 			std::pair<float,float> TC = coords[f.texcoordsIndex(i)];
-			manageVertex(P,N,TC,indices,references,normals,colors,texCoords,verticesMap);
+			manageVertex(P,N,TC,indices,normals,colors,texCoords,verticesMap);
 		}
 	}
 
 	cout << "Indices size: " << indices.size() << ". Vertices size: " << vertices.size() << "\n";
 	cout << "Faces: " << obj.faces().size() << "\n";
 	assert(indices.size() == 3*obj.faces().size());
-	
+
 	for(unsigned int i = 0; i < references.size(); ++i)
 	{
 		assert(references[i] > 0);
@@ -215,7 +215,6 @@ void DrawSmooth::manageVertex(
 	Vector N,
 	std::pair<float,float> TC,
 	std::vector<unsigned int>& indices,
-	std::vector<int>& references,
 	std::vector<float>& normals,
 	std::vector<float>& colors,
 	std::vector<float>& texCoords,
@@ -226,7 +225,6 @@ void DrawSmooth::manageVertex(
 	int vertexIndex = verticesMap[Pt];
 
 	indices.push_back(vertexIndex);
-	references[vertexIndex]++;
 	normals[3*vertexIndex] += N.x();
 	normals[3*vertexIndex+1] += N.y();
 	normals[3*vertexIndex+2] += N.z();

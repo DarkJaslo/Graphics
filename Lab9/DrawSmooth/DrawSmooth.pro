@@ -1,2 +1,2 @@
-TARGET     = $$qtLibraryTarget(DrawSmooth6)
+TARGET     = $$qtLibraryTarget(DrawSmooth3)
 include(../common.pro)
